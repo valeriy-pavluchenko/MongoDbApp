@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoDbApp.Web", "src\MongoDbApp.Web\MongoDbApp.Web.xproj", "{F0732651-C8F4-4229-901E-64FF3DFACD94}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MongoDbApp.DataAccess", "src\MongoDbApp.DataAccess\MongoDbApp.DataAccess.xproj", "{8547CFAD-421C-411F-BF00-0B4524F37971}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +24,16 @@ Global
 		{F0732651-C8F4-4229-901E-64FF3DFACD94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0732651-C8F4-4229-901E-64FF3DFACD94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0732651-C8F4-4229-901E-64FF3DFACD94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8547CFAD-421C-411F-BF00-0B4524F37971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8547CFAD-421C-411F-BF00-0B4524F37971}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8547CFAD-421C-411F-BF00-0B4524F37971}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8547CFAD-421C-411F-BF00-0B4524F37971}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F0732651-C8F4-4229-901E-64FF3DFACD94} = {974469E8-EF1C-48D1-A15C-0365F98734DF}
+		{8547CFAD-421C-411F-BF00-0B4524F37971} = {974469E8-EF1C-48D1-A15C-0365F98734DF}
 	EndGlobalSection
 EndGlobal

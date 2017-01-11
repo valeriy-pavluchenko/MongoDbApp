@@ -1,30 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Routing;
+using MongoDbApp.DataAccess.Repositories;
+using Microsoft.Extensions.Configuration;
+using MongoDbApp.Web.Extensions;
+using MongoDbApp.Web.Mappers;
+using MongoDbApp.DataAccess.Abstractions;
 
 namespace MongoDbApp.Web
 {
     public class Startup
     {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        private readonly IConfigurationRoot _configuration;
+
+        public Startup(IHostingEnvironment env)
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+
+            _configuration = builder.Build();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSingleton<IConfigurationRoot>(_configuration);
+
+            var dbEndpoint = _configuration.GetAppSettings("MongoDbEndpoint");
+            var dbName = _configuration.GetAppSettings("MongoDbName");
+
+            services.AddTransient<ICategoryRepository>(x => new CategoryRepository(dbEndpoint, dbName, "Categories"));
+            services.AddTransient<IProductRepository>(x => new ProductRepository(dbEndpoint, dbName, "Products"));
+
+            services.AddTransient<ICategoryMapper, CategoryMapper>();
+            services.AddTransient<IProductMapper, ProductMapper>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole();
-
             app.UseDeveloperExceptionPage();
 
             app.UseDefaultFiles();

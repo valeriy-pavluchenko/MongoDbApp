@@ -1,0 +1,18 @@
+﻿@model IEnumerable<MongoDbApp.Web.Models.Category.CategoryViewModel>
+<select class="form-control" id="@ViewBag.BindingProperty" name="@ViewBag.BindingProperty">
+    @if (@ViewBag.Id == null)
+    {
+        <option value="" selected>Select category...</option>
+    }
+    @foreach (var item in Model)
+    {
+        if (ViewBag.Id != null && ViewBag.Id == item.Id)
+        {
+            <option value="@item.Id" selected>@item.Name</option>
+        }
+        else
+        {
+            <option value="@item.Id">@item.Name</option>
+        }
+    }
+</select>
